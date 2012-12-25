@@ -1,0 +1,19 @@
+#imageDropZone {
+	text-align: center;
+	width: 100%;
+	border: 4px dashed silver;
+	margin:  45px auto 0;
+	padding: 45px 0;
+}
+
+#imageDropZone p {
+	font-size: 2em;
+	color: silver;
+}
+
+#playground {
+	margin: 25px auto;
+	width: auto;
+	height: auto;
+	border: 1px solid silver;
+}
