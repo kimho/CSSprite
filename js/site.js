@@ -9,17 +9,24 @@ jQuery(document).ready(function(){
 		allowedfiletypes: ['image/jpeg','image/png','image/gif'],
 		maxfiles: 1,
 		drop: function(fileEvent) {
-			var reader = new FileReader();
+			var reader = new FileReader(),
+				result;
 
 			reader.onload = function(e) {
-				var result = e.target.result;
+				result = e.target.result;
 				image.attr('src', result);
+			};
+
+			reader.onloadend = function(e) {
+				var imgW = image.width(),
+					imgH = image.height();
+
 				dropZone.css('background', 'url(' + result + ') no-repeat top left');
-				dropZone.width( image.width() )
-					.height( image.height() )
+				dropZone.width( imgW )
+					.height( imgH )
 					.css({ 'padding': 0 })
 					.text('')
-					.after('<p>To tinker with another image simply drag a new one over your current one</p>');
+					.after('<p class="center-text"><small>To tinker with another image simply drag a new one over your current one</small></p>');
 				playground.width( image.width() );
 			};
 
@@ -47,4 +54,37 @@ jQuery(document).ready(function(){
 			}
 		}
 	});
+
+	var isDragging = false,
+		originalX, originalY;
+
+	image.mousedown(function(e){
+		isDragging = true;
+
+		originalX = e.pageX - playground.offset().left;
+		originalY = e.pageY - playground.offset().top;
+
+		e.preventDefault();
+		return false;
+	});
+
+	image.mouseup(function(e){
+		isDragging = false;
+
+		e.preventDefault();
+		return false;
+	});
+
+	playground.mousemove(function(e){
+		var mouseX = e.pageX - this.offsetLeft,
+			mouseY = e.pageY - this.offsetTop;
+
+		if (isDragging) {
+			image.css({ 'top': -(originalY - mouseY), 'left': -(originalX - mouseX) });
+
+			var test = { 'top': -(originalY - mouseY), 'left': -(originalX - mouseX) };
+			console.log(test);
+		}
+	});
+	
 });

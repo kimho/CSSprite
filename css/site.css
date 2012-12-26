@@ -6,6 +6,10 @@
 	padding: 45px 0;
 }
 
+#imageDropZone:hover {
+	cursor: no-drop;
+}
+
 #imageDropZone p {
 	font-size: 2em;
 	color: silver;
@@ -15,5 +19,24 @@
 	margin: 25px auto;
 	width: auto;
 	height: auto;
-	border: 1px solid silver;
+	border: 3px solid silver;
+	max-width: 800px;
+	max-height: 800px;
+	position: relative;
+	overflow: hidden;
+	cursor: nw-resize;
+}
+
+#sprite {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+
+/* ======= UTIL classes
+  */
+
+.center-text {
+	text-align: center;
 }
