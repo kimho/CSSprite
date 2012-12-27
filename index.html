@@ -64,17 +64,22 @@
 	<form>
 		<fieldset>
 		<legend>Control Panel</legend>
-			<label>Label name</label>
-				<input type="text" placeholder="Type something…">
-				<span class="help-block">Example block-level help text here.</span>
-			
-			<label class="checkbox">
-				<input type="checkbox"> Check me out
-			</label>
-		
-			<button type="submit" class="btn">Submit</button>
+			<label>Element Dimensions</label>
+				<input size="5" type="text" placeholder="200"> x
+				<input size="5" type="text" placeholder="150">
+				<button type="submit" class="btn">Resize</button>
 		</fieldset>
 	</form>
+</div>
+
+<div id="css-output">
+	<pre>
+.background-class {
+	width: 200px;
+	height: 150px;
+	background: url() no-repeat top left 0px 0px;
+}
+	</pre>
 </div>
 
 </div>
