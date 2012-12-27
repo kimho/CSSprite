@@ -2,8 +2,10 @@ jQuery(document).ready(function(){
 
 	var dropZone = jQuery('#imageDropZone'),
 		playground = jQuery('#playground'),
-		image = playground.find('img').filter(':first');
+		image = playground.find('img').filter(':first'),
+		resize = jQuery('#resize');
 
+	// image drop
 	dropZone.filedrop({
 		paramname: 'imageDrop',
 		allowedfiletypes: ['image/jpeg','image/png','image/gif'],
@@ -55,6 +57,7 @@ jQuery(document).ready(function(){
 		}
 	});
 
+	// image interaction
 	var isDragging = false,
 		originalX, originalY;
 
@@ -86,5 +89,21 @@ jQuery(document).ready(function(){
 			console.log(test);
 		}
 	});
-	
+
+	// control panel controls
+	resize.submit(function(e){
+
+		var vals = resize.serializeArray(),
+			width = parseInt( vals[0].value, 10 ), // might not be the best assignment method here?
+			height = parseInt( vals[1].value, 10 );
+
+		playground.css({
+			width: ((width < 800) ? width: 800),
+			height: ((height < 800) ? height: 800)
+		});
+
+		e.preventDefault();
+		return false;
+	});
+
 });

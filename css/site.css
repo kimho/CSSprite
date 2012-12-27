@@ -4,6 +4,8 @@
 	border: 4px dashed silver;
 	margin:  45px auto 0;
 	padding: 45px 0;
+	max-width: 800px;
+	max-height: 800px;
 }
 
 #imageDropZone:hover {
