@@ -5,6 +5,27 @@ jQuery(document).ready(function(){
 		image = playground.find('img').filter(':first'),
 		resize = jQuery('#resize');
 
+	// util functions
+	var updateCSS = function(options) {
+		var opts = this.options || {};
+		var useImageDataSource = opts.useImageDataSource || false;
+
+		var cssString = ".background-class { \r\n"
+			+ "\t" + "width: " + playground.width() + "px\r\n"
+			+ "\t" + "height: " + playground.height() + "px\r\n"
+			+ "\t" + "background-repeat: no-repeat" + "\r\n"
+			+ "\t" + "background-position: " + image.offset().left + "px " + image.offset().top + "px" + ";\r\n";
+		if(useImageDataSource) {
+			cssString += "\t" + "background-image: " + "url(" +  image.attr('src') + ");\r\n";
+		}
+		
+		cssString += "}";
+
+		$('#css-output pre').text(cssString);
+	};
+
+	updateCSS();
+
 	// image drop
 	dropZone.filedrop({
 		paramname: 'imageDrop',
@@ -25,8 +46,6 @@ jQuery(document).ready(function(){
 
 				result = e.target.result;
 
-				console.log(result);
-
 				image.attr('src', result);
 
 				var imgW = image.width(),
@@ -39,6 +58,8 @@ jQuery(document).ready(function(){
 					.text('')
 					.after('<p class="center-text"><small>To tinker with another image simply drag a new one over your current one</small></p>');
 				playground.width( image.width() );
+
+				updateCSS();
 			};
 
 			reader.readAsDataURL(fileEvent.dataTransfer.files[0]);
@@ -71,7 +92,7 @@ jQuery(document).ready(function(){
 	var isDragging = false,
 		originalX, originalY;
 
-	image.mousedown(function(e){
+	playground.mousedown(function(e){
 		isDragging = true;
 
 		originalX = e.pageX - image.offset().left;
@@ -81,23 +102,26 @@ jQuery(document).ready(function(){
 		return false;
 	});
 
-	image.mouseup(function(e){
-		isDragging = false;
-
-		e.preventDefault();
-		return false;
-	});
-
-	playground.mousemove(function(e){
-		var mouseX = e.pageX - playground.offset().left,
-			mouseY = e.pageY - playground.offset().top;
-
+	$(window).mousemove(function(e){
 		if (isDragging) {
+			var mouseX = e.pageX - playground.offset().left,
+				mouseY = e.pageY - playground.offset().top;
+
 			image.css({ 'top': -(originalY - mouseY), 'left': -(originalX - mouseX) });
 
 			var test = { 'top': -(originalY - mouseY), 'left': -(originalX - mouseX) };
-			console.log(test);
 		}
+	});
+
+	$(window).mouseup(function(e){
+
+		if(isDragging) {
+			updateCSS();
+			isDragging = false;
+		}
+
+		e.preventDefault();
+		return false;
 	});
 
 	// control panel controls
