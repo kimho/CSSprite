@@ -10,16 +10,25 @@ jQuery(document).ready(function(){
 		paramname: 'imageDrop',
 		allowedfiletypes: ['image/jpeg','image/png','image/gif'],
 		maxfiles: 1,
+		maxfilesize: 1,
 		drop: function(fileEvent) {
 			var reader = new FileReader(),
 				result;
 
 			reader.onload = function(e) {
-				result = e.target.result;
-				image.attr('src', result);
+				console.log('loading...');
 			};
 
 			reader.onloadend = function(e) {
+
+				console.log('loaded complete...');
+
+				result = e.target.result;
+
+				console.log(result);
+
+				image.attr('src', result);
+
 				var imgW = image.width(),
 					imgH = image.height();
 
@@ -46,6 +55,7 @@ jQuery(document).ready(function(){
 					// program encountered a file whose size is greater than 'maxfilesize'
 					// FileTooLarge also has access to the file which was too large
 					// use file.name to reference the filename of the culprit file
+					console.log('file to large you tard...');
 					break;
 				case 'FileTypeNotAllowed':
 					// The file type is not in the specified list 'allowedfiletypes'
@@ -64,8 +74,8 @@ jQuery(document).ready(function(){
 	image.mousedown(function(e){
 		isDragging = true;
 
-		originalX = e.pageX - playground.offset().left;
-		originalY = e.pageY - playground.offset().top;
+		originalX = e.pageX - image.offset().left;
+		originalY = e.pageY - image.offset().top;
 
 		e.preventDefault();
 		return false;
@@ -79,8 +89,8 @@ jQuery(document).ready(function(){
 	});
 
 	playground.mousemove(function(e){
-		var mouseX = e.pageX - this.offsetLeft,
-			mouseY = e.pageY - this.offsetTop;
+		var mouseX = e.pageX - playground.offset().left,
+			mouseY = e.pageY - playground.offset().top;
 
 		if (isDragging) {
 			image.css({ 'top': -(originalY - mouseY), 'left': -(originalX - mouseX) });
