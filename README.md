@@ -7,7 +7,6 @@ Wanted to tinker with a front end mini app, this one just allows you to drag/dro
 TODO
 ========
 
-- Debug CSS string coords
 - Fix async / image load cache bug prevent images to display on first drag / drop
 - figure out a better way to create Issues and types, possibly from a file, or from CLI?
 - figure out what i just forgot for this bullet point while on the plane what is happening right now

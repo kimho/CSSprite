@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
 			+ "\t" + "width: " + playground.width() + "px\r\n"
 			+ "\t" + "height: " + playground.height() + "px\r\n"
 			+ "\t" + "background-repeat: no-repeat" + "\r\n"
-			+ "\t" + "background-position: " + image.offset().left + "px " + image.offset().top + "px" + ";\r\n";
+			+ "\t" + "background-position: " + -( playground.offset().left - image.offset().left ) + "px " + -(playground.offset().top - image.offset().top) + "px" + ";\r\n";
 		if(useImageDataSource) {
 			cssString += "\t" + "background-image: " + "url(" +  image.attr('src') + ");\r\n";
 		}
