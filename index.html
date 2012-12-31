@@ -60,8 +60,8 @@
 	<img id="sprite" src="" />
 </div>
 
-<div id="controls">
-	<form id="resize">
+<div id="controls" class="row">
+	<form id="resize" class="span4">
 		<fieldset>
 		<legend>Control Panel</legend>
 			<label>Element Dimensions</label>
@@ -69,17 +69,20 @@
 				<input name="height" size="5" type="text" placeholder="800">
 				<button type="submit" class="btn">Resize</button>
 		</fieldset>
-	</form>
-</div>
 
-<div id="css-output">
-	<pre>
+		<p><label for="showImgData" class="checkbox"><input type="checkbox" name="showImgData" id="showImgData" checked="checked" /> Show Image Source as raw data?</label></p>
+	</form>
+
+	<div id="css-output" class="span8">
+		<h3>CSS Output</h3>
+		<pre>
 .background-class {
 	width: 200px;
 	height: 150px;
 	background: url() no-repeat top left 0px 0px;
 }
-	</pre>
+		</pre>
+</div>
 </div>
 
 </div>

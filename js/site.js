@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 	// util functions
 	var updateCSS = function(options) {
 		var opts = this.options || {};
-		var useImageDataSource = opts.useImageDataSource || false;
+		var useImageDataSource = jQuery('#showImgData').is(':checked');
 
 		var cssString = ".background-class { \r\n"
 			+ "\t" + "width: " + playground.width() + "px\r\n"
@@ -138,6 +138,10 @@ jQuery(document).ready(function(){
 
 		e.preventDefault();
 		return false;
+	});
+
+	jQuery('#showImgData').click(function(){
+		updateCSS();
 	});
 
 });
