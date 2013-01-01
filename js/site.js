@@ -1,9 +1,9 @@
 jQuery(document).ready(function(){
 
 	var dropZone = jQuery('#imageDropZone'),
-		playground = jQuery('#playground'),
+		playground = jQuery('#imageDropZone'),
 		image = playground.find('img').filter(':first'),
-		resize = jQuery('#resize');
+		controls = jQuery('#controls');
 
 	// util functions
 	var updateCSS = function(options) {
@@ -41,7 +41,6 @@ jQuery(document).ready(function(){
 			};
 
 			reader.onloadend = function(e) {
-
 				console.log('loaded complete...');
 
 				result = e.target.result;
@@ -51,13 +50,15 @@ jQuery(document).ready(function(){
 				var imgW = image.width(),
 					imgH = image.height();
 
-				dropZone.css('background', 'url(' + result + ') no-repeat top left');
+				// dropZone.css('background', 'url(' + result + ') no-repeat top left');
+
+				dropZone.find('p').remove();
+
 				dropZone.width( imgW )
 					.height( imgH )
 					.css({ 'padding': 0 })
-					.text('')
 					.after('<p class="center-text"><small>To tinker with another image simply drag a new one over your current one</small></p>');
-				playground.width( image.width() );
+				// playground.width( image.width() );
 
 				updateCSS();
 			};
@@ -125,15 +126,17 @@ jQuery(document).ready(function(){
 	});
 
 	// control panel controls
-	resize.submit(function(e){
+	controls.submit(function(e){
 
-		var vals = resize.serializeArray(),
+		var vals = controls.serializeArray(),
 			width = parseInt( vals[0].value, 10 ), // might not be the best assignment method here?
 			height = parseInt( vals[1].value, 10 );
+			bgColor = vals[2].value;
 
 		playground.css({
 			width: ((width < 800) ? width: 800),
-			height: ((height < 800) ? height: 800)
+			height: ((height < 800) ? height: 800),
+			background: bgColor
 		});
 
 		e.preventDefault();
@@ -143,5 +146,7 @@ jQuery(document).ready(function(){
 	jQuery('#showImgData').click(function(){
 		updateCSS();
 	});
+
+
 
 });

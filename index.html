@@ -35,6 +35,11 @@
  
 			<!-- Be sure to leave the brand out there if you want it shown -->
 			<a class="brand" href="#">CSSprite</a>
+			<ul class="nav">
+				<li><a href="#aboutModal" data-toggle='modal'>About</a></li>
+				<li><a href="https://github.com/sprjr/CSSprite">Fork on GitHub</a></li>
+				<li><a href="http://zeunic.com">Zeunic, LLC</a></li>
+			</ul>
  
 			<!-- Everything you want hidden at 940px or less, place within here -->
 			<div class="nav-collapse collapse">
@@ -52,25 +57,34 @@
 	<p>To get started, just drag an image (jpg/png/gif) below, then start tinkering!</p>
 	<div id="imageDropZone">
 		<p>Drag and Drop</p>
+		<img id="sprite" src="" />
 	</div>
 </div>
 
 
-<div id="playground">
-	<img id="sprite" src="" />
-</div>
+<!-- <div id="playground">
+</div> -->
 
-<div id="controls" class="row">
-	<form id="resize" class="span4">
+<div class="row">
+	<form id="controls" class="span4 form-horizontal">
 		<fieldset>
 		<legend>Control Panel</legend>
+		<div class="control-group">
 			<label>Element Dimensions</label>
-				<input name="width" size="5" type="text" placeholder="800"> x
-				<input name="height" size="5" type="text" placeholder="800">
-				<button type="submit" class="btn">Resize</button>
-		</fieldset>
+			<input name="width" size="5" type="text" placeholder="800"> x
+			<input name="height" size="5" type="text" placeholder="800">
+		</div>
 
-		<p><label for="showImgData" class="checkbox"><input type="checkbox" name="showImgData" id="showImgData" checked="checked" /> Show Image Source as raw data?</label></p>
+		<div class="control-group">
+			<label>Parent Container Background CSS</label>
+			<input name="bgColor" size="32" placeholder="#hex / rgba() / url() / etc" />
+		</div>
+
+		<div class="control-group">
+			<button type="submit" class="btn">Update</button>
+		</div>
+
+		</fieldset>
 	</form>
 
 	<div id="css-output" class="span8">
@@ -82,14 +96,53 @@
 	background: url() no-repeat top left 0px 0px;
 }
 		</pre>
+	<p>
+		<label for="showImgData" class="checkbox"><input type="checkbox" name="showImgData" id="showImgData" checked="checked" /> Show Image Source as raw data?</label>
+		<button class="btn btn-inverse pull-right">Copy</button>
+	</p>
 </div>
 </div>
 
+</div>
+
+
+<div id="aboutModal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>About CSSprite</h3>
+	</div>
+	<div class="modal-body">
+		<h4>This Guy</h4>
+		<p>My name is Stephen Rivas Jr, and I'm a web developer / project manager for <a href="http://zeunic.com">Zeunic, LLC</a>. I really enjoy node.js development, and have been working with node since about 0.2.x. My love for Node stems from a similar love for JavaScript, and prototype-based programming. You can hit me up on Twitter (<a href="http://twitter.com/sprjrx">@sprjrx</a>), or check out my own website which very <em>rarely</em> gets attention at <a href="http://www.stephenrivasjr.com">http://www.stephenrivasjr.com</a></p>
+
+		<h4>This Project</h4>
+		<p>I built this app for a few reasons. To start, I've really wanted to up my open source development stuff for <a href="">my github</a> corner of the world. I also remembered back when I did front-end stuff in school that sprites were kind of annoying to tweak and work with. Sometimes you had to refresh the page and nudge things around a bit. Bear in mind, I built this app for a demographic that is likely "front end graphic designers who do CSS but kind of not really." It isn't really ground breaking, but it was a tool that I thought would perhaps suit a few folks out there.</p>
+
+		<h4>Current Features</h4>
+		<ul>
+			<li>Drag an image into the drop zone, set your elements desired width and height, then drag your sprite around to get the proper offset coordinates.</li>
+			<li>Accidentally stubmled across "include raw data" which allows you to encode your image right in to your CSS, if you want for whatever mobile project or what not may need that feature ;) </li>
+		</ul>
+
+		<h4>Upcoming</h4>
+		<ul>
+			<li>Nudge image using keyboard arrows</li>
+			<li>More robust-ness of the controls</li>
+			<li>Reset / Snap image feature</li>
+			<li>Copy CSS / Sass / LESS / Stylus to clipboard</li>
+		</ul>
+
+		<p>Hope you find it either a) mildly entertaining, b) mildly useful, or c) mildly educating. Feel free to send pull requests if you'd like!</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+	</div>
 </div>
 
 	<!-- The missing protocol means that it will match the current protocol, either http or https. If running locally, we use the local jQuery. -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.filedrop.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
 </body>

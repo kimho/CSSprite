@@ -6,10 +6,11 @@
 	padding: 45px 0;
 	max-width: 800px;
 	max-height: 800px;
+	overflow: hidden;
 }
 
 #imageDropZone:hover {
-	cursor: no-drop;
+	cursor: move;
 }
 
 #imageDropZone p {
@@ -32,6 +33,11 @@
 	position: relative;
 	top: 0;
 	left: 0;
+}
+
+pre {
+	max-height: 300px;
+	overflow: auto;
 }
 
 input {

@@ -9,8 +9,7 @@ TODO
 
 - Fix async / image load cache bug prevent images to display on first drag / drop
 - figure out a better way to create Issues and types, possibly from a file, or from CLI?
-- figure out what i just forgot for this bullet point while on the plane what is happening right now
 - Flash widget to copy CSS to clipboard
+- CSS / Stylus / Sass / LESS output?
 - Add Control Panel "reset / snap" function to allow popping image back to 0,0 and div to image size
-- Move #playground area to actual drop zone, or fix UI up for better interactions
 - Uh...figure out what else I need to do. Hah.
